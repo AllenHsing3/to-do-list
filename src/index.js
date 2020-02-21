@@ -6,6 +6,7 @@ const textAreaStyles = {
     width: 250,
     margin: 5
 };
+let allList = []
 
 class ToDoList extends React.Component{
     constructor(props){
@@ -16,6 +17,7 @@ class ToDoList extends React.Component{
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.isComplete = this.isComplete.bind(this);
     }
 
     handleSubmit(){
@@ -29,6 +31,9 @@ class ToDoList extends React.Component{
         this.setState({
             userInput: entered.target.value
         });
+    }
+    isComplete = e => {
+        e.target.classList.toggle("strikeThrough")
     }
     render(){
         const items = this.state.toDoList
@@ -44,7 +49,8 @@ class ToDoList extends React.Component{
                 <br />
                 <button onClick={this.handleSubmit}>Click to add to List</button>
                 <ul>
-                    {items.map(i=><li>{i}</li>)}
+                    {items.map(i=>
+                    <p onClick={this.isComplete}>{i}</p>)}
                 </ul>
             </div>
         );
@@ -52,7 +58,6 @@ class ToDoList extends React.Component{
 };
 
 /* ---------------------- */
-let allList = []
 ReactDOM.render(
     <ToDoList />,
     document.getElementById('root')
