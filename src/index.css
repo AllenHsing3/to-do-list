@@ -1,3 +1,33 @@
 .strikeThrough{
     text-decoration: line-through;
 }
+
+.body{
+    text-align: center;
+    width: 800px;
+    margin: auto;
+    height: 400px;
+    border: 3px solid grey;
+    border-radius: 6px;
+}
+
+.title{
+    text-align: center;
+    margin-top: 40px;
+    font-size: 60px;
+    font-family: monospace;
+    color: lightgray;
+}
+
+.addedList{
+    font-size: x-large;
+    font-family: monospace;
+}
+
+.listInput{
+    width: 792px;
+    height: 30px;
+    font-size: x-large;
+    font-family: monospace;
+};
+

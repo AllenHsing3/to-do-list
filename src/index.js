@@ -2,10 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const textAreaStyles = {
-    width: 250,
-    margin: 5
-};
+
 let allList = []
 
 class ToDoList extends React.Component{
@@ -18,6 +15,8 @@ class ToDoList extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.isComplete = this.isComplete.bind(this);
+        this.clearList = this.clearList.bind(this)
+
     }
 
     handleSubmit(){
@@ -35,23 +34,32 @@ class ToDoList extends React.Component{
     isComplete = e => {
         e.target.classList.toggle("strikeThrough")
     }
+    clearList(e){
+        allList = []
+        this.setState({
+            toDoList: []
+        });  
+    }
     render(){
         const items = this.state.toDoList
         return(
             <div>
-                <h1>to do list</h1>
-                <textArea
+            <h1 className="title">todo</h1>
+            <div className="body">
+                <input
                     onChange = {this.handleChange}
                     value = {this.state.userInput}
-                    style = {textAreaStyles}
+                    className = "listInput"
                     placeholder = "Don't forget me :)"
                 />
                 <br />
                 <button onClick={this.handleSubmit}>Click to add to List</button>
-                <ul>
+                <p className="addedList">
                     {items.map(i=>
                     <p onClick={this.isComplete}>{i}</p>)}
-                </ul>
+                </p>
+            <button className="clearBtn" onClick={this.clearList}>Clear</button>
+            </div>
             </div>
         );
     }
