@@ -17,10 +17,12 @@ class ToDoList extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
+
     handleSubmit(){
-        const itemsArray = this.state.userInput.split(" ")
+        const itemsArray = this.state.userInput.split()
+        allList.push(itemsArray)
         this.setState({
-            toDoList: itemsArray
+            toDoList: allList
         });
     }
     handleChange(entered){
@@ -29,7 +31,7 @@ class ToDoList extends React.Component{
         });
     }
     render(){
-        const items = this.state.toDoList.map(i => <li>{i}</li>)
+        const items = this.state.toDoList
         return(
             <div>
                 <h1>to do list</h1>
@@ -42,7 +44,7 @@ class ToDoList extends React.Component{
                 <br />
                 <button onClick={this.handleSubmit}>Click to add to List</button>
                 <ul>
-                    {items}
+                    {items.map(i=><li>{i}</li>)}
                 </ul>
             </div>
         );
@@ -50,7 +52,7 @@ class ToDoList extends React.Component{
 };
 
 /* ---------------------- */
-
+let allList = []
 ReactDOM.render(
     <ToDoList />,
     document.getElementById('root')
