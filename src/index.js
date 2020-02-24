@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-
 let allList = []
 
 class ToDoList extends React.Component{
@@ -23,7 +22,8 @@ class ToDoList extends React.Component{
         const itemsArray = this.state.userInput.split()
         allList.push(itemsArray)
         this.setState({
-            toDoList: allList
+            toDoList: allList,
+            userInput: ""
         });
     }
     handleChange(entered){
@@ -39,7 +39,7 @@ class ToDoList extends React.Component{
         this.setState({
             toDoList: []
         });  
-    }
+    };
     render(){
         const items = this.state.toDoList
         return(
@@ -53,11 +53,13 @@ class ToDoList extends React.Component{
                     placeholder = "Don't forget me :)"
                 />
                 <br />
-                <button onClick={this.handleSubmit}>Click to add to List</button>
+                <button className="addBtn" onClick={this.handleSubmit}>+</button>
                 <p className="addedList">
                     {items.map(i=>
                     <p onClick={this.isComplete}>{i}</p>)}
                 </p>
+            </div>
+            <div className="buttonContainer">
             <button className="clearBtn" onClick={this.clearList}>Clear</button>
             </div>
             </div>
